@@ -1,21 +1,24 @@
 const User = require('./models/User');
 
 module.exports = {
-  // gets all users
+  // gets all users:
+
   getUsers(req, res) {
     User.find()
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
 
-  // creates new user
+  // creates new user:
+
   createUser(req, res) {
     User.create(req.body)
       .then((userData) => res.json(userData))
       .catch((err) => res.status(500).json(err));
   },
 
-  // gets single user
+  // gets single user:
+
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
@@ -27,7 +30,8 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // updates single user
+  // updates a single user:
+
   updateUser(req, res) {
     User.updateOne(
       {
@@ -41,14 +45,16 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
-  // deletes user
+  // deletes a user:
+
   deleteUser(req, res) {
     User.deleteOne({ 'userId': req.params.userId })
       .then(() => res.json({ message: 'User deleted.' }))
       .catch((err) => res.status(500).json(err));
   },
 
-  // adds friend
+  // adds a friend:
+  
   addFriend(req, res) {
     User.updateOne(
       {
